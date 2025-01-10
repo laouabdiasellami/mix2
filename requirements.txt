@@ -1,6 +1,8 @@
-pytest>=7.0                  # For running tests
-xmltodict>=0.13              # For parsing XML into Python dictionaries
-wikipedia-api>=0.5.4         # For interacting with Wikipedia's API
-tkinter                      # GUI library (part of the Python standard library, no installation needed)
-math                         # Part of the Python standard library (no installation needed)
-urllib3>=1.26                # Modern library for HTTP requests (replaces urllib.request)
+xmltodict
+wikipedia-api
+nltk
+pytest
+textwrap
+urllib3
+scikit-learn
+pickle

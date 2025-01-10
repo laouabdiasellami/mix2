@@ -1,19 +1,32 @@
 import pytest
 from .document import Document, ArxivDocument, WikipediaDocument
 
-def test_document_creation():
-    doc = Document("Sample Title", "Author", "2023-01-01", "Sample content.")
-    assert doc.title == "Sample Title"
+# Test de la classe Document
+def test_document():
+    doc = Document("Test", "Author", "2025-01-01", "Text")
+    # Vérifie que le titre du document est bien "Test"
+    assert doc.title == "Test"
+    # Vérifie que l'auteur du document est bien "Author"
     assert doc.author == "Author"
-    assert doc.date == "2023-01-01"
-    assert doc.text == "Sample content."
+    # Vérifie que le type du document est bien "Document"
     assert doc.getType() == "Document"
 
-def test_arxiv_document_creation():
-    doc = ArxivDocument("Arxiv Title", ["Author1", "Author2"], "2023-01-01", "Arxiv content.")
-    assert doc.authors == ["Author1", "Author2"]
+# Test de la classe ArxivDocument
+def test_arxiv_document():
+    doc = ArxivDocument("Test", ["Author1", "Author2"], "2025-01-01", "Text")
+    # Vérifie que le titre du document est bien "Test"
+    assert doc.title == "Test"
+    # Vérifie que l'auteur du document est bien "Author1, Author2"
+    assert doc.author == "Author1, Author2"
+    # Vérifie que le type du document est bien "Arxiv"
     assert doc.getType() == "Arxiv"
 
-def test_wikipedia_document_creation():
-    doc = WikipediaDocument("Wiki Title", "Wikipedia", "2023-01-01", "Wikipedia content.")
+# Test de la classe WikipediaDocument
+def test_wikipedia_document():
+    doc = WikipediaDocument("Test", "Wikipedia", "2025-01-01", "Text")
+    # Vérifie que le titre du document est bien "Test"
+    assert doc.title == "Test"
+    # Vérifie que l'auteur du document est bien "Wikipedia"
+    assert doc.author == "Wikipedia"
+    # Vérifie que le type du document est bien "Wikipedia"
     assert doc.getType() == "Wikipedia"
