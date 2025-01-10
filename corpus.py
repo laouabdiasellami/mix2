@@ -1,20 +1,22 @@
-# Définition de la classe Corpus
+from document import Document, ArxivDocument, WikipediaDocument
+
 class Corpus:
-    _instance = None  # Attribut pour implémenter le modèle Singleton
+    # Initialisation d'une instance unique de la classe Corpus
+    _instance = None
 
-    # Méthode spéciale __new__ pour garantir qu'il n'y a qu'une seule instance de Corpus
     def __new__(cls):
-        if cls._instance is None:  # Si l'instance n'existe pas encore
-            cls._instance = super(Corpus, cls).__new__(cls)  # Crée une nouvelle instance
-            cls._instance.documents = []  # Initialisation de la liste des documents
-        return cls._instance  # Retourne l'instance unique du Corpus
+        # Si l'instance unique n'existe pas, on la crée
+        if cls._instance is None:
+            cls._instance = super(Corpus, cls).__new__(cls)
+            cls._instance.documents = []  # Liste vide pour stocker les documents
+        return cls._instance  # Retourne l'instance unique
 
-    # Méthode pour ajouter un document à la liste des documents
+    # Méthode pour ajouter un document à la collection
     def add_document(self, document):
-        self.documents.append(document)  # Ajoute le document à la liste des documents
+        self.documents.append(document)
 
-    # Méthode pour afficher les documents du corpus
+    # Méthode pour afficher tous les documents du corpus
     def display_documents(self):
-        for doc in self.documents:  # Parcours chaque document dans la liste
-            print("=" * 80)  # Affiche une ligne de séparation
-            print(doc)  # Affiche le document
+        for doc in self.documents:
+            print("=" * 80)  # Séparation pour chaque document
+            print(doc)  # Affichage du document

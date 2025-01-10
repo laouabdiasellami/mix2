@@ -1,27 +1,27 @@
-# Importation des classes et fonctions nécessaires
-from corpus import Corpus  # Classe pour gérer le corpus de documents
-from data_collection import collect_arxiv_data, collect_wikipedia_data  # Fonctions pour collecter les données depuis Arxiv et Wikipedia
-from similarity import find_most_relevant_articles  # Fonction pour trouver les articles les plus pertinents
+from corpus import Corpus  # Importation de la classe Corpus pour gérer les documents
+from arxiv_collector import collect_arxiv_data  # Importation de la fonction pour collecter les données d'Arxiv
+from wikipedia_collector import collect_wikipedia_data  # Importation de la fonction pour collecter les données de Wikipedia
+from utils.save_load import save_corpus, load_corpus  # Importation des fonctions pour sauvegarder et charger le corpus
 
-# Exécution du script principal
-if __name__ == "__main__":
-    # Création d'un nouvel objet corpus
-    corpus = Corpus()
+if __name__ == "__main__":  # Vérifie si le script est exécuté directement
+    corpus = Corpus()  # Création d'une instance unique du corpus
 
-    # Collecte des documents Arxiv et Wikipedia
-    arxiv_docs = collect_arxiv_data()  # Récupère les documents depuis Arxiv
-    wiki_docs = collect_wikipedia_data()  # Récupère les documents depuis Wikipedia
+    # Collecte des données depuis Arxiv et Wikipedia
+    arxiv_documents = collect_arxiv_data()  # Collecte des documents d'Arxiv
+    wikipedia_documents = collect_wikipedia_data()  # Collecte des documents de Wikipedia
 
     # Ajout des documents collectés dans le corpus
-    for doc in arxiv_docs + wiki_docs:  # Combine les documents Arxiv et Wikipedia et les ajoute dans le corpus
-        corpus.add_document(doc)
+    for doc in arxiv_documents + wikipedia_documents:  # Parcours des deux listes de documents
+        corpus.add_document(doc)  # Ajout de chaque document au corpus
 
-    # Définition de la requête de recherche
-    query = "deaths"  # Mot-clé pour rechercher les documents pertinents
+    # Affichage de tous les documents dans le corpus
+    corpus.display_documents()
 
-    # Affichage du message de recherche
-    print(f"Searching for most relevant documents related to: '{query}'\n")
+    # Sauvegarde du corpus dans un fichier
+    save_corpus(corpus, "corpus.pkl")
 
-    # Recherche des articles les plus pertinents avec deux méthodes différentes
-    find_most_relevant_articles(corpus, query, method='cosine')  # Utilisation de la méthode 'cosine'
-    find_most_relevant_articles(corpus, query, method='bm25')  # Utilisation de la méthode 'bm25'
+    # Chargement du corpus depuis le fichier sauvegardé
+    loaded_corpus = load_corpus("corpus.pkl")
+
+    # Affichage des documents chargés depuis le fichier
+    loaded_corpus.display_documents()

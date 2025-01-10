@@ -1,8 +1,8 @@
-xmltodict
-wikipedia-api
-nltk
-pytest
-textwrap
-urllib3
-scikit-learn
-pickle
+pytest>=7.0              # For running tests
+textwrap                 # Part of the Python standard library (no need to install)
+time                     # Part of the Python standard library (no need to install)
+urllib3>=1.26            # Updated library for making HTTP requests (instead of urllib.request)
+xmltodict>=0.13          # For parsing XML into Python dictionaries
+wikipedia-api>=0.5.4     # For interacting with Wikipedia's API
+datetime                 # Part of the Python standard library (no need to install)
+pickle                   # Part of the Python standard library (no need to install)

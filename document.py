@@ -1,37 +1,39 @@
-# Classe principale Document
-class Document:
-    # Initialisation du document avec son titre, auteur, date et contenu (par défaut vide)
-    def __init__(self, title, author, date, text=""):
-        self.title = title  # Le titre du document
-        self.author = author  # L'auteur du document
-        self.date = date  # La date de publication du document
-        self.text = text  # Le contenu du document
-        self.type = self.getType()  # Détermine le type du document (par défaut "Document")
+import textwrap
 
-    # Méthode pour obtenir le type du document
+# Classe de base Document représentant un document générique
+class Document:
+    def __init__(self, title, author, date, text=""):
+        # Initialisation des attributs du document
+        self.title = title
+        self.author = author
+        self.date = date
+        self.text = text
+        self.type = self.getType()  # Détermine le type de document
+
+    # Méthode pour retourner le type de document, ici "Document"
     def getType(self):
         return "Document"
 
-    # Méthode pour afficher une représentation sous forme de chaîne du document
+    # Méthode pour afficher les informations du document sous forme de chaîne
     def __str__(self):
-        import textwrap  # Pour formater le texte à une largeur de 80 caractères
+        # Utilisation de textwrap.fill pour formater le texte sur des lignes de 80 caractères
         return f"Title: {self.title}\nAuthor: {self.author}\nDate: {self.date}\nType: {self.type}\nContent:\n{textwrap.fill(self.text, 80)}"
 
-# Classe ArxivDocument qui hérite de Document
+# Classe dérivée ArxivDocument représentant un document de type Arxiv
 class ArxivDocument(Document):
-    # Initialisation d'un document Arxiv avec un titre, auteurs, date et contenu
     def __init__(self, title, authors, date, text=""):
-        super().__init__(title, ", ".join(authors), date, text)  # Appel du constructeur parent
-        self.authors = authors  # Liste des auteurs du document
+        # Initialisation de l'objet de la classe parente avec une liste d'auteurs
+        super().__init__(title, ", ".join(authors), date, text)
+        self.authors = authors  # Liste des auteurs spécifiques à ArxivDocument
 
-    # Méthode pour obtenir le type du document (Spécifique à Arxiv)
+    # Redéfinition de la méthode getType pour retourner "Arxiv"
     def getType(self):
         return "Arxiv"
 
-    # Méthode pour afficher une représentation sous forme de chaîne du document Arxiv
+    # Méthode pour afficher les informations du document de type Arxiv
     def __str__(self):
-        import textwrap  # Pour formater le texte à une largeur de 80 caractères
-        authors_str = ", ".join(self.authors)  # Convertit la liste des auteurs en une chaîne
+        authors_str = ", ".join(self.authors)  # Conversion des auteurs en chaîne
+        # Affichage formaté des informations du document
         return (
             f"Title: {self.title}\n"
             f"Authors: {authors_str}\n"
@@ -40,19 +42,19 @@ class ArxivDocument(Document):
             f"Content:\n{textwrap.fill(self.text, 80)}"
         )
 
-# Classe WikipediaDocument qui hérite de Document
+# Classe dérivée WikipediaDocument représentant un document de type Wikipedia
 class WikipediaDocument(Document):
-    # Initialisation d'un document Wikipedia avec un titre, auteur, date et contenu
     def __init__(self, title, author, date, text=""):
-        super().__init__(title, author, date, text)  # Appel du constructeur parent
+        # Initialisation de l'objet de la classe parente
+        super().__init__(title, author, date, text)
     
-    # Méthode pour obtenir le type du document (Spécifique à Wikipedia)
+    # Redéfinition de la méthode getType pour retourner "Wikipedia"
     def getType(self):
         return "Wikipedia"
 
-    # Méthode pour afficher une représentation sous forme de chaîne du document Wikipedia
+    # Méthode pour afficher les informations du document de type Wikipedia
     def __str__(self):
-        import textwrap  # Pour formater le texte à une largeur de 80 caractères
+        # Affichage formaté des informations du document
         return (
             f"Title: {self.title}\n"
             f"Author: {self.author}\n"
